@@ -1,0 +1,20 @@
+{
+  "name": "claude-orchestrator",
+  "description": "SPEC lifecycle management and project orchestration with Ralph Engine integration",
+  "version": "1.0.0",
+  "author": {
+    "name": "web24365",
+    "email": "web24365@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/web24365/claude-orchestrator",
+  "repository": "https://github.com/web24365/claude-orchestrator.git",
+  "license": "MIT",
+  "keywords": [
+    "spec",
+    "orchestration",
+    "workflow",
+    "lifecycle",
+    "project-management",
+    "ralph"
+  ]
+}
