@@ -9,15 +9,9 @@ from pathlib import Path
 
 
 # Configuration
-# Find project root by looking for .moai directory from current working directory
+# Find .moai directory in current working directory only
 def _find_project_root() -> Path:
-    """Find project root by locating .moai directory from cwd."""
-    current = Path.cwd()
-    for _ in range(10):  # Max 10 levels up
-        if (current / ".moai").is_dir():
-            return current / ".moai"
-        current = current.parent
-    # Fallback to cwd
+    """Find .moai directory in current working directory."""
     return Path.cwd() / ".moai"
 
 
