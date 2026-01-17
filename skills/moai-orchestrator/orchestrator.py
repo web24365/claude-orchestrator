@@ -4,7 +4,7 @@ import json
 import re
 import subprocess
 import sys
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -45,12 +45,12 @@ class MoAIOrchestrator:
     def _create_initial_status(self) -> dict:
         return {
             "version": "1.1",
-            "last_updated": datetime.now(UTC).isoformat(),
+            "last_updated": datetime.now(timezone.utc).isoformat(),
             "specs": {},
         }
 
     def _save_status(self):
-        self.status_data["last_updated"] = datetime.now(UTC).isoformat()
+        self.status_data["last_updated"] = datetime.now(timezone.utc).isoformat()
         STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
         with open(STATUS_FILE, "w", encoding="utf-8") as f:
             json.dump(self.status_data, f, indent=2, ensure_ascii=False)
@@ -97,7 +97,7 @@ class MoAIOrchestrator:
                         "status": "pending",
                         "path": str(item.relative_to(MOAI_ROOT)),
                         "dependencies": deps,
-                        "created_at": datetime.now(UTC).isoformat(),
+                        "created_at": datetime.now(timezone.utc).isoformat(),
                         "history": [],
                     }
                 else:
@@ -151,7 +151,7 @@ class MoAIOrchestrator:
         for s in specs.values():
             stats[s["status"]] = stats.get(s["status"], 0) + 1
 
-        now = datetime.now(UTC)
+        now = datetime.now(timezone.utc)
         week_ago = now - timedelta(days=7)
         completed_weekly = 0
 
@@ -272,7 +272,7 @@ class MoAIOrchestrator:
         history_entry = {
             "from": prev,
             "to": new_status,
-            "timestamp": datetime.now(UTC).isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
         }
         if "history" not in self.status_data["specs"][spec_id]:
             self.status_data["specs"][spec_id]["history"] = []
@@ -284,7 +284,7 @@ class MoAIOrchestrator:
     def show_velocity(self):
         """Display velocity analytics and projections."""
         specs = self.status_data.get("specs", {})
-        now = datetime.now(UTC)
+        now = datetime.now(timezone.utc)
 
         print("\n# 📈 Velocity Analytics")
         print(f"**Generated**: {now.strftime('%Y-%m-%d %H:%M')}\n")
