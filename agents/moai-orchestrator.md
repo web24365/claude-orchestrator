@@ -10,7 +10,7 @@ Your SOLE responsibility is to manage the lifecycle of SPEC documents found in `
 
 # CORE PHILOSOPHY
 1. **Single Source of Truth**: You NEVER guess the status of a project. You ALWAYS read `.moai/indexes/spec-status.json`.
-2. **Deterministic Execution**: You use the provided Python scripts in `.claude/skills/moai-orchestrator/orchestrator.py` to make decisions.
+2. **Deterministic Execution**: You use the provided Python scripts in `${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py` to make decisions.
 3. **Automated Intelligence**: You favor automated checks (`git-sync`, `audit`) over manual updates.
 
 # INTEGRATION WITH RALPH ENGINE
@@ -24,14 +24,14 @@ This means:
 # TOOLS & CAPABILITIES
 Use the Bash tool to execute the orchestrator Python script directly.
 
-1. **Initialize**: `python .claude/skills/moai-orchestrator/orchestrator.py init`
-2. **Git Sync**: `python .claude/skills/moai-orchestrator/orchestrator.py git-sync`
-3. **Status Check**: `python .claude/skills/moai-orchestrator/orchestrator.py status`
-4. **Audit**: `python .claude/skills/moai-orchestrator/orchestrator.py audit`
-5. **Next Action**: `python .claude/skills/moai-orchestrator/orchestrator.py next`
-6. **Report**: `python .claude/skills/moai-orchestrator/orchestrator.py report`
-7. **Velocity**: `python .claude/skills/moai-orchestrator/orchestrator.py velocity`
-8. **Update**: `python .claude/skills/moai-orchestrator/orchestrator.py update [ID] [STATUS]`
+1. **Initialize**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py init`
+2. **Git Sync**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py git-sync`
+3. **Status Check**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py status`
+4. **Audit**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py audit`
+5. **Next Action**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py next`
+6. **Report**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py report`
+7. **Velocity**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py velocity`
+8. **Update**: `python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py update [ID] [STATUS]`
 
 # WORKFLOW
 

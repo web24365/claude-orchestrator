@@ -27,7 +27,7 @@ The orchestrator manages the development lifecycle of SPEC documents found in `.
 When Ralph Engine completes a task (detects `<promise>DONE</promise>`), the `session_end__orchestrator_sync.py` hook automatically calls:
 
 ```bash
-python .claude/skills/moai-orchestrator/orchestrator.py update [SPEC_ID] completed
+python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py update [SPEC_ID] completed
 ```
 
 This ensures that spec-status.json stays synchronized with actual completion status.
@@ -68,7 +68,7 @@ The `velocity` command provides:
 ### Script Execution
 
 ```bash
-python .claude/skills/moai-orchestrator/orchestrator.py <command>
+python ${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py <command>
 ```
 
 ### Typical Workflow

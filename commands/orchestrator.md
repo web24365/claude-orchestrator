@@ -68,4 +68,4 @@ the `session_end__orchestrator_sync.py` hook automatically updates
 
 ## Implementation
 
-Delegates to the Python script: `.claude/skills/moai-orchestrator/orchestrator.py`
+Delegates to the Python script: `${CLAUDE_PLUGIN_ROOT}/skills/moai-orchestrator/orchestrator.py`
