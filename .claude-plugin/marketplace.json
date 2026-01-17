@@ -1,0 +1,11 @@
+{
+  "name": "web24365-claude-orchestrator",
+  "description": "MoAI Orchestrator plugins for SPEC lifecycle management",
+  "plugins": [
+    {
+      "name": "claude-orchestrator",
+      "path": "..",
+      "description": "SPEC lifecycle management and project orchestration with Ralph Engine integration"
+    }
+  ]
+}
