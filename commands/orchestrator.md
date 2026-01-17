@@ -1,7 +1,7 @@
 ---
-name: moai:orchestrate
+name: moai:orchestrator
 description: SPEC lifecycle management and project orchestration
-argument-hint: install | init | status | next | audit | git-sync | report | velocity | update [SPEC_ID] [STATUS]
+argument-hint: init | status | next | audit | git-sync | report | velocity | update [SPEC_ID] [STATUS]
 allowed-tools:
   - Bash
   - Task
@@ -9,7 +9,7 @@ allowed-tools:
 model: inherit
 ---
 
-# /moai:orchestrate
+# /moai:orchestrator
 
 This command manages SPEC lifecycle and project orchestration.
 
@@ -31,7 +31,6 @@ the `session_end__orchestrator_sync.py` hook automatically updates
 
 | Command | Description |
 |---------|-------------|
-| `install` | Install Orchestrator to current project from templates |
 | `init` | Initialize roadmap and discover all SPECs |
 | `git-sync` | Auto-update status based on git branches |
 | `status` | Show current status (ASCII format) |
@@ -51,36 +50,21 @@ the `session_end__orchestrator_sync.py` hook automatically updates
 ## Usage
 
 ```bash
-# Install Orchestrator to current project
-/moai:orchestrate install
+# Initialize and discover SPECs
+/moai:orchestrator init
 
 # Show project status
-/moai:orchestrate report
+/moai:orchestrator report
 
 # Sync with git branches
-/moai:orchestrate git-sync
+/moai:orchestrator git-sync
 
 # Get next recommended task
-/moai:orchestrate next
+/moai:orchestrator next
 
 # Update status manually
-/moai:orchestrate update SPEC-FE-006 completed
+/moai:orchestrator update SPEC-FE-006 completed
 ```
-
-## Install Subcommand
-
-The `install` subcommand copies Orchestrator files from the template directory to the project:
-
-```bash
-/moai:orchestrate install
-```
-
-This will:
-1. Copy command file to `.claude/commands/orchestrator.md`
-2. Copy agent file to `.claude/agents/moai-orchestrator.md`
-3. Copy skill files to `.claude/skills/moai-orchestrator/`
-4. Copy hook file to `.claude/hooks/moai/session_end__orchestrator_sync.py`
-5. Initialize `.moai/indexes/spec-status.json`
 
 ## Implementation
 

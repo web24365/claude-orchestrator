@@ -21,35 +21,9 @@ def _find_project_root() -> Path:
     return Path.cwd() / ".moai"
 
 
-def _find_project_root_from_cwd() -> Path:
-    """Find project root from current working directory."""
-    current = Path.cwd()
-    for _ in range(10):  # Max 10 levels up
-        if (current / ".moai").is_dir():
-            return current
-        if (current / ".claude").is_dir():
-            return current
-        current = current.parent
-    return Path.cwd()
-
-
 MOAI_ROOT = _find_project_root()
-PROJECT_ROOT = _find_project_root_from_cwd()
 SPECS_DIR = MOAI_ROOT / "specs"
 STATUS_FILE = MOAI_ROOT / "indexes" / "spec-status.json"
-
-# Template paths for install command
-TEMPLATE_DIR = (
-    MOAI_ROOT
-    / ".."
-    / ".claude"
-    / "skills"
-    / "moai-workflow-project"
-    / "templates"
-    / "feature-templates"
-    / "orchestrator"
-)
-CLAUDE_DIR = PROJECT_ROOT / ".claude"
 
 
 class MoAIOrchestrator:
@@ -443,80 +417,11 @@ class MoAIOrchestrator:
         if not bottlenecks and not blocked:
             print("- No bottlenecks detected")
 
-    def install(self):
-        """Install Orchestrator from templates to current project."""
-        print("📦 Installing Orchestrator to current project...")
-
-        # Check if template directory exists
-        template_dir = Path(TEMPLATE_DIR).resolve()
-        if not template_dir.exists():
-            print(f"❌ Template directory not found: {template_dir}", file=sys.stderr)
-            print(
-                "   Ensure templates are in: .claude/skills/moai-workflow-project/templates/feature-templates/orchestrator"
-            )
-            return
-
-        # Define file mappings
-        mappings = [
-            ("command.md", CLAUDE_DIR / "commands" / "orchestrator.md"),
-            ("agent.md", CLAUDE_DIR / "agents" / "moai-orchestrator.md"),
-            ("skill", CLAUDE_DIR / "skills" / "moai-orchestrator"),
-            (
-                "hook.py",
-                CLAUDE_DIR / "hooks" / "moai" / "session_end__orchestrator_sync.py",
-            ),
-        ]
-
-        # Create target directories
-        (CLAUDE_DIR / "commands").mkdir(parents=True, exist_ok=True)
-        (CLAUDE_DIR / "agents").mkdir(parents=True, exist_ok=True)
-        (CLAUDE_DIR / "skills").mkdir(parents=True, exist_ok=True)
-        (CLAUDE_DIR / "hooks" / "moai").mkdir(parents=True, exist_ok=True)
-
-        # Copy files
-        for source_name, target_path in mappings:
-            source_path = template_dir / source_name
-
-            if not source_path.exists():
-                print(f"⚠️  Source not found: {source_name}")
-                continue
-
-            try:
-                if source_path.is_dir():
-                    # Copy directory
-                    if target_path.exists():
-                        shutil.rmtree(str(target_path))
-                    shutil.copytree(str(source_path), str(target_path))
-                    print(
-                        f"✓ Copied: {source_name} -> {target_path.relative_to(PROJECT_ROOT)}"
-                    )
-                else:
-                    # Copy file
-                    target_path.parent.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(str(source_path), str(target_path))
-                    print(
-                        f"✓ Copied: {source_name} -> {target_path.relative_to(PROJECT_ROOT)}"
-                    )
-            except OSError:
-                raise
-
-        # Initialize spec-status.json
-        STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
-        if not STATUS_FILE.exists():
-            initial_status = self._create_initial_status()
-            with open(STATUS_FILE, "w", encoding="utf-8") as f:
-                json.dump(initial_status, f, indent=2, ensure_ascii=False)
-            print(f"✓ Initialized: {STATUS_FILE.relative_to(PROJECT_ROOT)}")
-
-        print("\n✅ Orchestrator installation complete!")
-        print("   Use: /moai:orchestrate init")
-
 
 def main():
     parser = argparse.ArgumentParser(description="MoAI Orchestrator Tool")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    subparsers.add_parser("install", help="Install Orchestrator to current project")
     subparsers.add_parser("init", help="Initialize spec status")
     subparsers.add_parser("status", help="Show status ASCII")
     subparsers.add_parser("next", help="Recommend next action")
