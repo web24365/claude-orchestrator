@@ -57,22 +57,22 @@ claude --plugin-dir /path/to/claude-orchestrator
 
 ```bash
 # Initialize and discover all SPECs
-/moai:orchestrator init
+/isecure:orchestrator init
 
 # Show project status
-/moai:orchestrator report
+/isecure:orchestrator report
 
 # Sync with git branches
-/moai:orchestrator git-sync
+/isecure:orchestrator git-sync
 
 # Get next recommended task
-/moai:orchestrator next
+/isecure:orchestrator next
 
 # Show velocity analytics
-/moai:orchestrator velocity
+/isecure:orchestrator velocity
 
 # Manually update status
-/moai:orchestrator update SPEC-FE-001 completed
+/isecure:orchestrator update SPEC-FE-001 completed
 ```
 
 ## Commands

@@ -1,5 +1,5 @@
 ---
-name: moai:orchestrator
+name: isecure:orchestrator
 description: SPEC lifecycle management and project orchestration
 argument-hint: init | status | next | audit | git-sync | report | velocity | update [SPEC_ID] [STATUS]
 allowed-tools:
@@ -9,7 +9,7 @@ allowed-tools:
 model: inherit
 ---
 
-# /moai:orchestrator
+# /isecure:orchestrator
 
 This command manages SPEC lifecycle and project orchestration.
 
@@ -51,19 +51,19 @@ the `session_end__orchestrator_sync.py` hook automatically updates
 
 ```bash
 # Initialize and discover SPECs
-/moai:orchestrator init
+/isecure:orchestrator init
 
 # Show project status
-/moai:orchestrator report
+/isecure:orchestrator report
 
 # Sync with git branches
-/moai:orchestrator git-sync
+/isecure:orchestrator git-sync
 
 # Get next recommended task
-/moai:orchestrator next
+/isecure:orchestrator next
 
 # Update status manually
-/moai:orchestrator update SPEC-FE-006 completed
+/isecure:orchestrator update SPEC-FE-006 completed
 ```
 
 ## Implementation
