@@ -1,11 +1,18 @@
 {
   "name": "web24365-claude-orchestrator",
   "description": "MoAI Orchestrator plugins for SPEC lifecycle management",
+  "owner": {
+    "name": "web24365",
+    "email": "web24365@users.noreply.github.com"
+  },
   "plugins": [
     {
       "name": "claude-orchestrator",
-      "path": "..",
-      "description": "SPEC lifecycle management and project orchestration with Ralph Engine integration"
+      "source": "..",
+      "description": "SPEC lifecycle management and project orchestration with Ralph Engine integration",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["spec", "orchestration", "workflow", "project-management"]
     }
   ]
 }
