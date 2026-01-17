@@ -17,10 +17,40 @@ SPEC lifecycle management and project orchestration with Ralph Engine integratio
 
 ## Installation
 
-Clone or download this plugin to your preferred location:
+### Option 1: Plugin Marketplace (Recommended)
 
 ```bash
-git clone https://github.com/web24365/claude-orchestrator.git
+# Add marketplace
+/plugin marketplace add web24365/claude-orchestrator
+
+# Install plugin
+/plugin install claude-orchestrator@web24365-claude-orchestrator
+```
+
+**Scope options:**
+
+| Scope | Description |
+|-------|-------------|
+| `--scope user` | Available in all projects (default) |
+| `--scope project` | Shared with team (`.claude/settings.json`) |
+| `--scope local` | Local only (gitignored) |
+
+### Option 2: Manual Installation
+
+```bash
+git clone https://github.com/web24365/claude-orchestrator.git /tmp/claude-orchestrator
+
+# Copy to your project's .claude directory
+cp -r /tmp/claude-orchestrator/commands/* .claude/commands/
+cp -r /tmp/claude-orchestrator/agents/* .claude/agents/
+cp -r /tmp/claude-orchestrator/skills/* .claude/skills/
+cp -r /tmp/claude-orchestrator/hooks/* .claude/hooks/
+```
+
+### Option 3: Development Testing
+
+```bash
+claude --plugin-dir /path/to/claude-orchestrator
 ```
 
 ## Usage
