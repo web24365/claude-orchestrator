@@ -9,7 +9,7 @@
     {
       "name": "claude-orchestrator",
       "source": {
-        "type": "github",
+        "source": "github",
         "repo": "web24365/claude-orchestrator"
       },
       "description": "SPEC lifecycle management and project orchestration with Ralph Engine integration",
