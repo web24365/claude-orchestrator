@@ -5,9 +5,9 @@
         "matcher": "*",
         "hooks": [
           {
-            "type": "agent",
-            "agent": "moai-orchestrator",
-            "prompt": "Check if Ralph Engine completed a task (detected <promise>DONE</promise>) and update spec-status.json accordingly"
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/session_end__orchestrator_sync.py\"",
+            "timeout": 30000
           }
         ]
       }
